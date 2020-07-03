@@ -39,4 +39,4 @@ app.get("/", async(request, response) => {
 });
 
 bot.loadFile("rs-standard.rive").then(loading_done).catch(loading_error);
-app.listen(process.env.port || "3000");
+app.listen(process.env.PORT || 3000);
