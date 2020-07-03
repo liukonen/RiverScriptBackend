@@ -31,6 +31,8 @@ app.get("/", async(request, response) => {
   let input = request.query.text;
   input = remove(input, '\"');
   
+  if(input === 'undefined') response.json({response: "You need to give me input.. such as ?user='luke'&text='hi'"});
+
   bot.reply(user, input).then(function(reply) {
     response.json({response: reply});  
   });
