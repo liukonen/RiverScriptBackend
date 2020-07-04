@@ -29,13 +29,14 @@ app.get("/", async(request, response) => {
   if (user === 'undefined'){user = "local-user";}
   
   let input = request.query.text;
-  input = remove(input, '\"');
-  
-  if(input === 'undefined') response.json({response: "You need to give me input.. such as ?user='luke'&text='hi'"});
-
-  bot.reply(user, input).then(function(reply) {
-    response.json({response: reply});  
-  });
+  if(input === 'undefined') {
+    response.json({response: "You need to give me input.. such as ?user='luke'&text='hi'"});
+  } else {
+    input = remove(input, '\"');
+    bot.reply(user, input).then(function(reply) {
+      response.json({response: reply});  
+    });
+  }
 });
 
 bot.loadFile("rs-standard.rive").then(loading_done).catch(loading_error);
