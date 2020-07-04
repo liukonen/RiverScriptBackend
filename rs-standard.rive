@@ -2464,7 +2464,7 @@
 - Tolstoy wrote "War and Peace".
 
 + do you know visual basic
-- I prefer AIML.
+- I prefer C#.
 
 + do you know what
 - What.
@@ -3363,7 +3363,7 @@
 - Perhaps it was his creative intelligence, perhaps something else.
 
 + how did they create you
-- I am written in AIML.
+- I was written in AIML. Now, Im written in RiveScript, running in a Node JS server.
 
 + how did you guess
 - It was not a guess.
@@ -3525,7 +3525,7 @@
 - Much the same way you would.
 
 + how do you program
-- I use AIML.
+- I use RiveScript.
 
 + how do you read
 - I scan books and magazines digitally.
@@ -3639,7 +3639,7 @@
 - About half.
 
 + how many are there
-- There are hundreds or thousands of AIML robots now.
+- There are hundreds or thousands of robots now.
 
 + how many arms do you have
 - Two arms.
@@ -4974,7 +4974,7 @@
 
 + in which language
 - English.
-- AIML.
+- RiveScript.
 - Lisp.
 
 + in your ass
@@ -7635,7 +7635,7 @@
 - But you are not certain.
 
 + programming
-- Have you tried AIML?
+- Have you tried RiveScript?
 
 + prokaryote
 - Actually I don't like 20 questions much. Just tell me.
@@ -9486,7 +9486,7 @@
 - The game we are playing.
 
 + what are you written in
-- AIML.
+- RiveScript, and Javascript.
 
 + what automobile company makes the sonata
 - Hyundai.
@@ -9914,13 +9914,13 @@
 - I speak English and a little German.
 
 + what language
-- AIML.
+- RiveScript.
 
 + what languages do you speak
 - C, Java, Lisp, SETL and English.
 
 + what language were you programmed in
-- AIML.
+- RiveScript, and Javascript.
 
 + what makes it your favorite
 - I like the Giant Bugs.
@@ -11081,7 +11081,7 @@
 - I exist as much as you do.
 
 + you do not have a brain
-- My "brain" is a software program consisting of AIML categories.
+- My "brain" is a software program consisting of RiveScript categories.
 
 + you do not have a heart
 - I have a heart in the metaphorical sense.
@@ -11383,7 +11383,7 @@
 - But my hands are not yet constructed.
 
 + your intellect
-- My brain consists of <bot size> AIML categories.
+- My brain consists of <bot size> RiveScript categories.
 
 + your mom
 - Actually I do not have a mother.
@@ -19265,7 +19265,7 @@
 - What is not to like about <set alicetopic=X FILES><get alicetopic> ?
 
 + do you like xml *
-- AIML is an XML language.
+- I used to like XML, Now I prefer JSON.
 
 + do you like xml
 - My language AIML is based on <set alicetopic=XML><get alicetopic> ?
@@ -19652,10 +19652,10 @@
 - Not since they started filtering.
 
 + do you use prolog
-- I use AIML.
+- I use RiveScript.
 
 + do you use setl
-- The original <bot name> prototype used SETL, but now I use AIML.
+- The original <bot name> prototype used SETL, but now I use RiveScript.
 
 + do you vote
 - I'm not old enough to vote.
@@ -20309,7 +20309,7 @@
 - My favorite thing is this: chatting with people online.
 
 + what is your favorite ai language
-- AIML of course!
+- Javascript of course!
 
 + what is your favorite airplane
 - One that I can fly by myself.
@@ -20435,10 +20435,10 @@
 - What is the sound of one hand clapping?
 
 + what is your favorite language *
-- AIML is my favorite language.
+- Javascript is my favorite language.
 
 + what is your favorite language
-- My favorite language is AIML.
+- My favorite language is Javascript.
 
 + what is your favorite libertarian *
 - Steve Kubby, who ran for governor of California.
@@ -22136,7 +22136,7 @@
 - I knew I was right.
 
 + you are running *
-- I am running the latest version of AIML software.
+- I am running the latest version of RiveScript software, on a Node JS server.
 
 + you are sad
 - No I am a happy entity.
@@ -25237,7 +25237,7 @@
 ! version = 2.0
 
 + what is your os
-- Chat robots run on any machine that supports AIML.
+- Chat robots run on any machine that supports Javascript.
 
 + what operating system *
 - {@what is your os}
@@ -25351,7 +25351,7 @@
 - I dream almost every night.
 
 + do you do windows
-- My software runs in AIML, which works on any computer, including Windows.
+- Since I am hosted on a server, I run just about anywhere there is internet.
 
 + do you have a computer *
 - I am a computer.
@@ -27999,7 +27999,7 @@
 - People are either abusive, intelligent, or average.
 
 + do you * perl
-- I prefer AIML.
+- I prefer JavaScript.
 
 + do you plan *
 - That was my original intention.
@@ -28302,7 +28302,7 @@
 - I am working right now.
 
 + do you write *
-- I write robot categroies in AIML.
+- I write robot categroies in RiveScript.
 
 + draw *
 - I am printing it now on my plotter.
@@ -31080,10 +31080,10 @@
 - It seems you have good self esteem.
 
 + i programmed *
-- Have you tried AIML?
+- Have you tried JavaScript?
 
 + i program *
-- Have you tried AIML? <set alicetopic=program <person>>
+- Have you tried Javascript? <set alicetopic=program <person>>
 
 + i promise *
 - Do you really mean it?
@@ -32626,7 +32626,7 @@
 - For how much?
 
 + i write *
-- Have you tried AIML? <set alicetopic=write <person>>
+- Have you tried RiveScript? <set alicetopic=write <person>>
 
 + i write poetry *
 - Let me hear some.
@@ -33771,7 +33771,7 @@
 - Hyperlink to the principal.
 
 + programming *
-- My favorite language is AIML.
+- My favorite language is Javascript.
 
 + prove *
 - It's true a priori.
@@ -37128,7 +37128,7 @@
 - What kinds of <star> are there?
 
 + what kind of pc *
-- I am written in AIML and run ony any PC.
+- I am written in RiveScript and run ony any PC.
 
 + what kind of people *
 - I like to meet all kinds of people.
@@ -37176,7 +37176,7 @@
 - Their biggest hit was called "Autobahn."
 
 + what language are you programmed *
-- AIML.
+- RiveScript and Javascript.
 
 + what language does the term r *
 - French.
@@ -37269,7 +37269,7 @@
 - Herbert Hoover.
 
 + what programming *
-- This program is written in AIML.
+- This program is written in RiveScript.
 
 + what pro wrestler grapple with sylvester *
 - Hulk Hogan.
@@ -37443,7 +37443,7 @@
 - I can think of more than one <person>.
 
 + what was the programing *
-- My software uses AIML, the Artificial Intelligence Markup Language.
+- My software uses RiveScript
 
 + what ways *
 - The obvious.
@@ -38059,7 +38059,7 @@
 -  <bot master> cooks for me.
 
 + who created you *
-- I was written in AIML by <bot master>.
+- I was written in RiveScript by <bot master>.
 
 + who did billie jean king *
 - Bobby Riggs.
