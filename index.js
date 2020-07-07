@@ -35,16 +35,10 @@ async function GetInfo(request){
   let result = await dit.duckIt(request, { noHtml: true });
   if (result.data.AbstractText != ""){
     return "I found on Duck Duck go, that " + result.data.AbstractText
-  }else if(result.data.AbstractSource != ""){
+  }else if(result.data.AbstractURL != ""){
     return "I found something from Duck Duck Go on " + result.data.AbstractSource + " " + result.data.Heading + " " + result.data.AbstractURL;
   }
   return result.data.AbstractSource;
-}
-
-async function BotCall(request){
-  let input = remove(request, '\"');
-  let response = await bot.reply(user, input);
-  return response;
 }
 
 function remove(text, toremove){
@@ -56,6 +50,7 @@ function remove(text, toremove){
 }
 
 app.use(function(req, res, next) {
+  console.log(req.headers.host + " " + req.headers.origin);
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
@@ -94,6 +89,7 @@ app.get("/", async(request, response) => {
     
   }
 });
+
 
 bot.loadFile("rs-standard.rive").then(loading_done).catch(loading_error);
 
