@@ -20,6 +20,7 @@
   "homepage": "https://github.com/liukonen/RiverScriptBackend#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "helmet": "^4.3.1",
     "noaa-weather": "0.0.4",
     "node-cache": "^5.1.2",
     "node-duckduckgo": "^2.0.11",

@@ -9,7 +9,8 @@ const { response } = require("express");
 const myCache = new NodeCache();
 const app = express();
 const bot = new RiveScript();
-
+const helmet = require("helmet");
+app.use(helmet());
 function loading_done() {
   console.log("Bot has finished loading!");
   bot.sortReplies();
@@ -82,16 +83,18 @@ app.get("/", async(request, response) => {
       let searchResult = await GetInfo(lInput);
       if (searchResult != ""){response.json({response: searchResult});}
     }
+    else{
       input = remove(input, '\"');
       bot.reply(user, input).then(function(reply) {
         response.json({response: reply});  
       });
-    
+    }
   }
 });
 
 
 bot.loadFile("rs-standard.rive").then(loading_done).catch(loading_error);
+
 
 var server = app.listen(process.env.PORT || 5000, function () {
   var port = server.address().port;
