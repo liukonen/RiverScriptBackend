@@ -1,11 +1,10 @@
 const express = require("express");
 const RiveScript = require("rivescript");
-const request = require('request');
-const NodeCache = require( "node-cache" );
-const noaaWeather = require('noaa-weather');
+const request = require("request");
+const NodeCache = require("node-cache");
 const dit = require("node-duckduckgo");
 const { response } = require("express");
-
+const fetch = require("node-fetch");
 const myCache = new NodeCache();
 const app = express();
 const bot = new RiveScript();
@@ -20,81 +19,105 @@ function loading_error(error, filename, lineno) {
   console.log("Error when loading files: " + error);
 }
 
-
-async function GetWeather(){
-  let value = myCache.get( "weather" );
-  if ( value == undefined ){
-      let X = await noaaWeather('Milwaukee, WI');
-      value = "Im not sure where you live, but in Milwaukee, we are looking at " + X.data.text[0];
-      success = myCache.set( "weather", value, 3600);
+async function GetWeather() {
+  let value = myCache.get("weather");
+  if (value == undefined) {
+    let X = await fetch(
+      "https://api.weather.gov/gridpoints/MKX/80,70/forecast"
+    );
+    let js = await X.json();
+    let textvalue = js.properties.periods[0].detailedForecast;
+    console.log(textvalue);
+    value =
+      "I'm not sure where you live, but in Milwaukee, we are looking at " +
+      textvalue;
+    myCache.set("weather", value, 3600);
   }
   return value;
 }
 
-
-async function GetInfo(request){
+async function GetInfo(request) {
   let result = await dit.duckIt(request, { noHtml: true });
-  if (result.data.AbstractText != ""){
-    return "I found on Duck Duck go, that " + result.data.AbstractText
-  }else if(result.data.AbstractURL != ""){
-    return "I found something from Duck Duck Go on " + result.data.AbstractSource + " " + result.data.Heading + " " + result.data.AbstractURL;
+  if (result.data.AbstractText != "") {
+    return "I found on Duck Duck go, that " + result.data.AbstractText;
+  } else if (result.data.AbstractURL != "") {
+    return (
+      "I found something from Duck Duck Go on " +
+      result.data.AbstractSource +
+      " " +
+      result.data.Heading +
+      " " +
+      result.data.AbstractURL
+    );
   }
   return result.data.AbstractSource;
 }
 
-function remove(text, toremove){
+function remove(text, toremove) {
   let tempText = text;
-  while (tempText.includes(toremove)){
-    tempText = tempText.replace(toremove, '');
+  while (tempText.includes(toremove)) {
+    tempText = tempText.replace(toremove, "");
   }
   return tempText;
 }
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   console.log(req.headers.host + " " + req.headers.origin);
   res.header("Access-Control-Allow-Origin", "https://liukonen.dev");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
-app.get("/", async(request, response) => {
+app.get("/", async (request, response) => {
   let user = request.query.user;
-  if (user === 'undefined'){
+  if (user === "undefined") {
     user = "local-user";
   }
-  
+
   let input = request.query.text;
-  if(typeof input === 'undefined') {
-    response.json({response: "You need to give me input.. such as ?user='luke'&text='hi'"});
+  if (typeof input === "undefined") {
+    response.json({
+      response: "You need to give me input.. such as ?user='luke'&text='hi'",
+    });
   } else {
     let lInput = input.toLowerCase();
-    if (lInput.includes("weather")){
+    if (lInput.includes("weather")) {
       let weather = await GetWeather();
-      response.json({response: weather}); 
-    }
-    else if(lInput.includes("who's") || lInput.includes("who is") || lInput.includes("tell me about") || lInput.includes("what is")){
+      response.json({ response: weather });
+    } else if (
+      lInput.includes("who's") ||
+      lInput.includes("who is") ||
+      lInput.includes("tell me about") ||
+      lInput.includes("what is")
+    ) {
       let ln = 0;
       let testLN = 1;
-      while (testLN != ln){
+      while (testLN != ln) {
         ln = lInput.length;
-        lInput = lInput.replace("who's", "").replace("who is", "").replace("tell me about", "").replace("what is", "");
+        lInput = lInput
+          .replace("who's", "")
+          .replace("who is", "")
+          .replace("tell me about", "")
+          .replace("what is", "");
         testLN = lInput.length;
       }
       let searchResult = await GetInfo(lInput);
-      if (searchResult != ""){response.json({response: searchResult});}
-    }
-    else{
-      input = remove(input, '\"');
-      bot.reply(user, input).then(function(reply) {
-        response.json({response: reply});  
+      if (searchResult != "") {
+        response.json({ response: searchResult });
+      }
+    } else {
+      input = remove(input, '"');
+      bot.reply(user, input).then(function (reply) {
+        response.json({ response: reply });
       });
     }
   }
 });
 
-
 bot.loadFile("rs-standard.rive").then(loading_done).catch(loading_error);
-
 
 var server = app.listen(process.env.PORT || 5000, function () {
   var port = server.address().port;
