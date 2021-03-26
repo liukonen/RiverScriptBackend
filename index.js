@@ -9,7 +9,16 @@ const myCache = new NodeCache();
 const app = express();
 const bot = new RiveScript();
 const helmet = require("helmet");
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./openapi.json');
+
+var options  = {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: "API Explorer",
+  customfavIcon: "https://liukonen.dev/img/favicons/favicon-32x32.png"
+};
 app.use(helmet());
+
 function loading_done() {
   console.log("Bot has finished loading!");
   bot.sortReplies();
@@ -79,9 +88,7 @@ app.get("/", async (request, response) => {
 
   let input = request.query.text;
   if (typeof input === "undefined") {
-    response.json({
-      response: "You need to give me input.. such as ?user='luke'&text='hi'",
-    });
+    response.redirect('/api-docs');
   } else {
     let lInput = input.toLowerCase();
     if (lInput.includes("weather")) {
@@ -117,10 +124,12 @@ app.get("/", async (request, response) => {
   }
 });
 
+app.use('/api-docs', swaggerUi.serve);
+app.get('/api-docs', swaggerUi.setup(swaggerDocument, options));
+
 bot.loadFile("rs-standard.rive").then(loading_done).catch(loading_error);
 
 var server = app.listen(process.env.PORT || 5000, function () {
   var port = server.address().port;
   console.log("Express is working on port " + port);
 });
-//app.listen(process.env.PORT || 3000);
