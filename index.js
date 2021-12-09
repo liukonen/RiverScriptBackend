@@ -1,9 +1,7 @@
 const express = require("express");
 const RiveScript = require("rivescript");
-const request = require("request");
 const NodeCache = require("node-cache");
 const dit = require("node-duckduckgo");
-const { response } = require("express");
 const fetch = require("node-fetch");
 const myCache = new NodeCache();
 const app = express();
@@ -71,7 +69,7 @@ function remove(text, toremove) {
 }
 
 app.use(function (req, res, next) {
-  console.log(req.headers.host + " " + req.headers.origin);
+ // console.log(req.headers.host + " " + req.headers.origin);
   res.header("Access-Control-Allow-Origin", "https://liukonen.dev");
   res.header(
     "Access-Control-Allow-Headers",
