@@ -1,0 +1,28 @@
+pipeline{
+    agent any
+    stages{
+        stage("build"){
+            steps{
+                sh """
+                    docker pull node:lts-alpine
+                    docker-compose build
+                """
+            }
+        }
+        stage("remove old"){
+            steps{
+            sh """
+            docker-compose stop
+            docker-compose rm -f  
+            """
+            }
+        }
+        stage("Deploy"){
+            steps{
+                sh """
+                    docker-compose up -d 
+                """
+            }
+        }
+    }
+}
