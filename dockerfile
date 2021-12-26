@@ -1,8 +1,8 @@
 FROM node:lts-alpine AS build
 WORKDIR /app
-COPY *.json .
+COPY *.json ./
 RUN npm ci --only=production
-COPY . .
+COPY . ./
 
 FROM node:lts-alpine
 WORKDIR /app
