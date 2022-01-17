@@ -7,7 +7,7 @@ info:
     <br />3. do not use the backup Heroku bot unless the main bot is down. I am not paying for a verson
     <br />4. Understand some of the responses I have no control over, and content, links or data provided by the bot may come from 3rd party sources such as Duck Duck Go and NOAA.
     <br/> <b>In general, don't be evil, and be kind to the bot</b>
-  version: "1.20211226"
+  version: "1.20220116"
   termsOfService: "https://github.com/liukonen/liukonen.github.io/blob/master/LICENSE"
   contact:
     email: "liukonen@gmail.com"
