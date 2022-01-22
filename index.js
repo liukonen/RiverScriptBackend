@@ -2,7 +2,7 @@ const express = require("express");
 const RiveScript = require("rivescript");
 const NodeCache = require("node-cache");
 const dit = require("node-duckduckgo");
-const fetch = require("node-fetch");
+const axios = require('axios').default;
 const myCache = new NodeCache();
 const app = express();
 const bot = new RiveScript();
@@ -29,11 +29,14 @@ function loading_error(error, filename, lineno) {
 async function GetWeather() {
   let value = myCache.get("weather");
   if (value == undefined) {
-    let X = await fetch(
-      "https://api.weather.gov/gridpoints/MKX/80,70/forecast"
-    );
-    let js = await X.json();
-    let textvalue = js.properties.periods[0].detailedForecast;
+
+    let js = await axios({
+      method: 'get',
+      url: 'https://api.weather.gov/gridpoints/MKX/80,70/forecast',
+      responseType: 'json'
+    });
+
+    let textvalue = js.data.properties.periods[0].detailedForecast;
     console.log(textvalue);
     value =
       "I'm not sure where you live, but in Milwaukee, we are looking at " +
@@ -69,7 +72,6 @@ function remove(text, toremove) {
 }
 
 app.use(function (req, res, next) {
- // console.log(req.headers.host + " " + req.headers.origin);
   res.header("Access-Control-Allow-Origin", "https://liukonen.dev");
   res.header(
     "Access-Control-Allow-Headers",
