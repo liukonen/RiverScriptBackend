@@ -8,7 +8,8 @@ exports.GetWeather = async function() {
   if (value == undefined) {
     let js = await axios({
       method: "get",
-      url: "https://api.weather.gov/gridpoints/MKX/80,70/forecast",
+      headers: { 'User-Agent':'(bot.liukonen.dev, liukonen@gmail.com)' },
+      url: "https://api.weather.gov/gridpoints/MKX/80,70/forecast", 
       responseType: "json"
     });
 
