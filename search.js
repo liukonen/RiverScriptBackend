@@ -2,7 +2,7 @@ const dit = require("node-duckduckgo");
 const axios = require("axios").default;
 
 module.exports.GetInfo = async function(request) {
-  let result = await dit.duckIt(request, { noHtml: true });
+  let result = await dit.duckIt(request, { noHtml: true, parentalFilter: 'Moderate' });
   console.log("hit");
   if (result.data.AbstractText != "") {
     return "I found on Duck Duck go, that " + result.data.AbstractText;
