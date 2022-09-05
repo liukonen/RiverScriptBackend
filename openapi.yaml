@@ -4,10 +4,9 @@ info:
   description: This API is used for the RiverScript Bot at Chat.liukonen.dev. The source code to this bot is open source and available for anyone to use. I am leaving this open frealy for anyone to use if they want to play around. I do ask th following.
     <br/>1. do not use the bot for any spaming, spoofing or any malice
     <br/>2. do not bombard or DNS attack the bot. This is running on a Raspbery Pi
-    <br />3. do not use the backup Heroku bot unless the main bot is down. I am not paying for a verson
-    <br />4. Understand some of the responses I have no control over, and content, links or data provided by the bot may come from 3rd party sources such as Duck Duck Go and NOAA.
+    <br />3. Understand some of the responses I have no control over, and content, links or data provided by the bot may come from 3rd party sources such as Duck Duck Go and NOAA.
     <br/> <b>In general, don't be evil, and be kind to the bot</b>
-  version: "1.20220116"
+  version: "1.20220905"
   termsOfService: "https://github.com/liukonen/liukonen.github.io/blob/master/LICENSE"
   contact:
     email: "liukonen@gmail.com"
@@ -18,8 +17,6 @@ info:
 servers:
   - url: https://bot.liukonen.dev
     description: Raspberry Pi server
-  - url: https://river-backend.herokuapp.com
-    description: Heroku Backup server
 paths:
   /:
     get:
