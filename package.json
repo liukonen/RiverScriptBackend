@@ -30,7 +30,7 @@
         "node-duckduckgo": "^2.0.17",
         "request": "^2.88.2",
         "rivescript": "^2.2.0",
-        "ssri": "^9.0.1",
+        "ssri": "^10.0.0",
         "swagger-ui-express": "^4.6.0",
         "webpack": "^5.75.0"
     }
