@@ -31,7 +31,7 @@ func main() {
 	}()
 
 	once.Do(func() {
-		bot = rivescript.New(&rivescript.Config{})
+		bot = rivescript.New(nil)
 		bot.LoadFile("rs-standard.rive")
 		bot.SortReplies()
 	})
