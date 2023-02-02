@@ -1,6 +1,7 @@
 version: '3.3'
+name: "RiveScript_Go"
 services:
-  web:
+  web-alpine:
     build:
       context: .
       dockerfile: dockerfile
@@ -8,5 +9,5 @@ services:
       - "com.centurylinklabs.watchtower.enable=false"
     command: npm start
     ports:
-    - 5005:5000
+    - 5055:5000
     restart: unless-stopped
