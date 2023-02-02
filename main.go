@@ -30,6 +30,12 @@ func main() {
 		}
 	}()
 
+	once.Do(func() {
+		bot = rivescript.New(&rivescript.Config{})
+		bot.LoadFile("rs-standard.rive")
+		bot.SortReplies()
+	})
+
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -88,11 +94,6 @@ func main() {
 }
 
 func botreply(user string, input string) string {
-	once.Do(func() {
-		bot = rivescript.New(rivescript.WithUTF8())
-		bot.LoadFile("rs-standard.rive")
-		bot.SortReplies()
-	})
 	response, err := bot.Reply(user, input)
 	if err != nil {
 		log.Fatalf("Error loading file: %s\n", err)
