@@ -3,10 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/aichaos/rivescript-go"
-	"github.com/goddtriffin/helmet"
-	"github.com/gorilla/mux"
-	"github.com/swaggo/http-swagger"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -15,6 +11,12 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/aichaos/rivescript-go"
+	"github.com/aichaos/rivescript-go/sessions/memory"
+	"github.com/goddtriffin/helmet"
+	"github.com/gorilla/mux"
+	"github.com/swaggo/http-swagger"
 )
 
 var cache = sync.Map{}
@@ -31,7 +33,15 @@ func main() {
 	}()
 
 	once.Do(func() {
-		bot = rivescript.New(nil)
+		bot = rivescript.New(&rivescript.Config{
+			Debug: false,                 // Debug mode, off by default
+			Strict: false,                // No strict syntax checking
+			UTF8: false,                  // No UTF-8 support enabled by default
+			Depth: 5,                    // Becomes default 50 if Depth is <= 0
+			Seed: time.Now().UnixNano(),  // Random number seed (default is == 0)
+			SessionManager: memory.New(), // Default in-memory session manager
+		})
+		
 		bot.LoadFile("rs-standard.rive")
 		bot.SortReplies()
 	})
