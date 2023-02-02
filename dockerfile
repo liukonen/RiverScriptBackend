@@ -18,7 +18,6 @@ FROM alpine:latest
 WORKDIR /
 COPY --from=build /docker-gs-ping /docker-gs-ping
 COPY *.rive /
-#COPY *.json /
 ADD /static /static
 EXPOSE 5000
 ENTRYPOINT ["/docker-gs-ping"]
