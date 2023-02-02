@@ -8,7 +8,6 @@ RUN go mod download
 
 COPY *.go ./
 COPY *.rive ./
-COPY *.json ./
 ADD /static /app/static
 RUN go build -o /docker-gs-ping
 
