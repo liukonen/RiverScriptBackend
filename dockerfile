@@ -1,12 +1,24 @@
-FROM node:lts-alpine AS build
-WORKDIR /app
-COPY *.json ./
-RUN npm ci --only=production
-COPY . ./
+FROM golang:alpine AS build
 
-FROM node:lts-alpine
 WORKDIR /app
-COPY --from=build /app /app
-USER 1000
+
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download
+
+COPY *.go ./
+COPY *.rive ./
+COPY *.json ./
+ADD /static /app/static
+RUN go build -o /docker-gs-ping
+
+
+## Deploy
+FROM alpine:latest
+WORKDIR /
+COPY --from=build /docker-gs-ping /docker-gs-ping
+COPY *.rive /
+COPY *.json /
+ADD /static /static
 EXPOSE 5000
-CMD ["index.js"]
+ENTRYPOINT ["/docker-gs-ping"]
