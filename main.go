@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/aichaos/rivescript-go"
+	"github.com/goddtriffin/helmet"
 	"github.com/gorilla/mux"
 	"github.com/swaggo/http-swagger"
 	"io/ioutil"
@@ -14,7 +15,6 @@ import (
 	"strings"
 	"sync"
 	"time"
-	"github.com/goddtriffin/helmet"
 )
 
 var cache = sync.Map{}
@@ -71,7 +71,7 @@ func main() {
 			}
 			fmt.Fprintf(w, GetInfo(rawInput))
 		} else {
-			rawInput = strings.ReplaceAll(rawInput, `"`, "")  
+			rawInput = strings.ReplaceAll(rawInput, `"`, "")
 			fmt.Fprintf(w, botreply(user, rawInput))
 		}
 	})
@@ -98,6 +98,9 @@ func botreply(user string, input string) string {
 	if err != nil {
 		log.Fatalf("Error loading file: %s\n", err)
 	}
+	//if user == "local-user" {
+		bot.ClearUservars(user)
+	//}
 	return response
 }
 
