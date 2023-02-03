@@ -14,14 +14,6 @@ var options = {
 };
 app.use(helmet());
 
-function remove(text, toremove) {
-    let tempText = text;
-    while (tempText.includes(toremove)) {
-        tempText = tempText.replace(toremove, "");
-    }
-    return tempText;
-}
-
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://liukonen.dev");
     res.header(
@@ -32,52 +24,42 @@ app.use(function(req, res, next) {
 });
 
 app.get("/", async(request, response) => {
-    let user = request.query.user;
-    if (user === "undefined") {
-        user = "local-user";
-    }
-
-    let rawInput = request.query.text;
-    if (typeof rawInput === "undefined") {
+    const user = request.query.user || "local-user";
+    const rawInput = request.query.text;
+    if (!rawInput) {
         response.redirect("/api-docs");
-    } else {
-        let query = rawInput.toLowerCase();
-        if (query.includes("weather")) {
-            try {
-                let weather = await GetWeather();
-                response.json({ response: weather });
-            } catch (exception) {
-                response.json({
-                    response: "For some reason, I can't lookup the weather... odd. I'm indoors, so it doesn't matter to me anyway."
-                });
-            }
-        } else if (
-            query.includes("who's") ||
-            query.includes("who is") ||
-            query.includes("tell me about") ||
-            query.includes("what is")
-        ) {
-            let ln = 0;
-            let testLN = 1;
-            while (testLN != ln) {
-                ln = query.length;
-                query = query
-                    .replace("who's", "")
-                    .replace("who is", "")
-                    .replace("tell me about", "")
-                    .replace("what is", "");
-                testLN = query.length;
-            }
-            let searchResult = await GetInfo(query);
-            if (searchResult != "") {
-                response.json({ response: searchResult });
-            }
-        } else {
-            rawInput = remove(rawInput, '"');
-            botreply(user, rawInput).then(function(reply) {
-                response.json({ response: reply });
-            });
+        return;
+    }
+    let query = rawInput.toLowerCase().trim();
+
+    if (query.includes("weather"))
+        try {
+            const weather = await GetWeather();
+            response.json({ response: weather });
         }
+    catch (exception) {
+        response.json({
+            response: "For some reason, I can't lookup the weather... odd. I'm indoors, so it doesn't matter to me anyway."
+        });
+    } else if (
+        query.includes("who's") ||
+        query.includes("who is") ||
+        query.includes("tell me about") ||
+        query.includes("what is")
+    ) {
+        query = query
+            .replace(/who's/g, '')
+            .replace(/who is/g, '')
+            .replace(/tell me about/g, '')
+            .replace(/what is/g, '')
+            .trim();
+        const searchResult = await GetInfo(query)
+        if (searchResult) response.json({ response: searchResult })
+    } else {
+        const filteredInput = rawInput.replace(/['"]+/g, '');
+        botreply(user, filteredInput).then(reply => {
+            response.json({ response: reply });
+        });
     }
 });
 
