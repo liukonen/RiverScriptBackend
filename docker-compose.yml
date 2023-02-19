@@ -8,5 +8,5 @@ services:
       - "com.centurylinklabs.watchtower.enable=false"
     command: npm start
     ports:
-    - 5005:5000
+    - 5055:5000
     restart: unless-stopped
