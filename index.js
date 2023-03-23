@@ -67,6 +67,12 @@ app.get("/", async(request, response) => {
 app.use("/api-docs", swaggerUi.serve);
 app.get("/api-docs", swaggerUi.setup(swaggerDocument, options));
 
+app.use('/healthcheck', require('express-healthcheck')({
+    healthy: function() {
+        return { everything: 'is ok' };
+    }
+}));
+
 var server = app.listen(process.env.PORT || 5000, function() {
     var port = server.address().port;
     console.log("Express is working on port " + port);
