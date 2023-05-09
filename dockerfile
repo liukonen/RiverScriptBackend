@@ -1,4 +1,8 @@
 FROM node:lts-alpine AS build
+RUN if [ -n "$npm_config_proxy" ]; then \
+      npm config set proxy $npm_config_proxy && \
+      npm config set https-proxy $npm_config_proxy \
+    ; fi
 WORKDIR /app
 COPY *.json ./
 RUN npm ci --only=production
