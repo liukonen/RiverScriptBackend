@@ -4,8 +4,8 @@ const axios = require("axios").default
 const myCache = new NodeCache()
 const WEATHER_CACHE_KEY = "weather"
 const WEATHER_API_URL = "https://api.weather.gov/gridpoints/MKX/80,70/forecast"
-const domain = process.env("DOMAIN")
-const email = process.env("EMAIL_ADDRESS")
+const domain = process.env.DOMAIN
+const email = process.env.EMAIL_ADDRESS
 
 
 exports.GetWeather = async function() {
