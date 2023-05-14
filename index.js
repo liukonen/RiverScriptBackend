@@ -17,7 +17,7 @@ var options = {
 
 
 //Middleware
-app.use(helmet)
+app.use(helmet())
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://liukonen.dev")
     res.header(
