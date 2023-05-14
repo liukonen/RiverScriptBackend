@@ -5,7 +5,7 @@ RUN if [ -n "$npm_config_proxy" ]; then \
     ; fi
 WORKDIR /app
 COPY *.json ./
-RUN npm ci --only=production
+RUN pnpm ci --production
 COPY . ./
 
 FROM node:lts-alpine

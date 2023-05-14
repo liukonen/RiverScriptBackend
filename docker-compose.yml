@@ -9,6 +9,8 @@ services:
     command: npm start
     environment:
       - npm_config_proxy=${npm_config_proxy}
+      - EMAIL_ADDRESS=${EMAIL_ADDRESS}
+      - DOMAIN=${BOTDOMAIN}
     ports:
     - 5005:5000
     restart: unless-stopped
