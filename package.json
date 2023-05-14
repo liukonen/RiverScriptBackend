@@ -38,5 +38,9 @@
         "babel-loader": "^9.1.2",
         "json5": "^2.2.3",
         "webpack": "^5.76.0"
+    },
+    "devDependencies": {
+        "@types/express-healthcheck": "^0.1.0",
+        "@types/swagger-ui-express": "^4.1.3"
     }
 }

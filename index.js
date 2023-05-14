@@ -18,23 +18,6 @@ app.use(function(req, res, next) {
     next()
 })
 
-//Routes
-app.use("/", handleRequest)
-app.use("/api-docs", swaggerUi.serve)
-app.get("/api-docs", swaggerUi.setup(swaggerDocument, options))
-
-app.use('/healthcheck', require('express-healthcheck')({
-    healthy: function() {
-        return { everything: 'is ok' }
-    }
-}))
-
-//Server
-var server = app.listen(process.env.PORT || 5000, function() {
-    var port = server.address().port
-    console.log("Express is working on port " + port)
-})
-
 //Route Handlers
 async function handleRequest(request, response) {
     const user = request.query.user || "local-user"
@@ -75,3 +58,22 @@ var options = {
     customSiteTitle: "API Explorer",
     customfavIcon: "https://liukonen.dev/img/favicons/favicon-32x32.png"
 }
+
+//Routes
+app.get("/api-docs", swaggerUi.setup(swaggerDocument, options))
+app.use("/api-docs", swaggerUi.serve)
+
+app.use('/healthcheck', require('express-healthcheck')({
+    healthy: function() {
+        return { everything: 'is ok' }
+    }
+}))
+
+app.use("/", handleRequest)
+
+
+//Server
+var server = app.listen(process.env.PORT || 5000, function() {
+    var port = server.address().port
+    console.log("Express is working on port " + port)
+})
