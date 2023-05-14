@@ -4,11 +4,35 @@ const { botreply, isInformationQuery, extractQuery } = require("./brain.js")
 const { GetWeather } = require("./weather.js")
 const app = express()
 const helmet = require("helmet")
+const Redoc = require("redoc-express")
 const swaggerUi = require("swagger-ui-express")
 const swaggerDocument = require("./openapi.json")
+const { default: RiveScript } = require("rivescript")
+
+//options
+var redocOptions = {
+    title: "API Explorer",
+    theme: {
+        typography: {
+            fontFamily: "Roboto, sans-serif",
+            fontSize: "16px"
+        },
+        colors: {
+            primary: {
+                main: "#2c3e50"
+            }
+        }
+    },
+};
+
 
 //Middleware
-app.use(helmet())
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "https://unpkg.com"]
+    }
+}));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://liukonen.dev")
     res.header(
@@ -17,6 +41,7 @@ app.use(function(req, res, next) {
     )
     next()
 })
+app.use("/api-docs", swaggerUi.serve)
 
 //Route Handlers
 async function handleRequest(request, response) {
@@ -61,7 +86,39 @@ var options = {
 
 //Routes
 app.get("/api-docs", swaggerUi.setup(swaggerDocument, options))
-app.use("/api-docs", swaggerUi.serve)
+
+app.get('/docs/swagger.json', (req, res) => {
+    res.sendFile('openapi.json', { root: '.' });
+})
+
+app.get(
+    '/docs',
+    Redoc({
+        title: 'API Docs',
+        specUrl: '/docs/swagger.json',
+        redocOptions: {
+            theme: {
+                colors: {
+                    primary: {
+                        main: '#6EC5AB'
+                    }
+                },
+                typography: {
+                    fontFamily: `"museo-sans", 'Helvetica Neue', Helvetica, Arial, sans-serif`,
+                    fontSize: '15px',
+                    lineHeight: '1.5',
+                    code: {
+                        code: '#87E8C7',
+                        backgroundColor: '#4D4D4E'
+                    }
+                },
+                menu: {
+                    backgroundColor: '#ffffff'
+                }
+            }
+        }
+    })
+)
 
 app.use('/healthcheck', require('express-healthcheck')({
     healthy: function() {

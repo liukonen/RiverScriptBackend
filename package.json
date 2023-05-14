@@ -29,6 +29,8 @@
         "helmet": "^7.0.0",
         "node-cache": "^5.1.2",
         "node-duckduckgo": "^2.0.18",
+        "redoc": "^2.0.0",
+        "redoc-express": "^2.1.0",
         "rivescript": "^2.2.1",
         "swagger-ui-express": "^4.6.2"
     },
