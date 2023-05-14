@@ -7,6 +7,7 @@ WORKDIR /app
 COPY *.json ./
 RUN npm ci --production
 COPY . ./
+RUN npm prune
 
 FROM node:lts-alpine
 WORKDIR /app
