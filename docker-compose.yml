@@ -14,3 +14,7 @@ services:
     ports:
     - 5005:5000
     restart: unless-stopped
+networks:
+  existing-network:
+    external:
+      name: external
