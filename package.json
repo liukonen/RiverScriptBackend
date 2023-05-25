@@ -28,7 +28,6 @@
         "express-healthcheck": "^0.1.0",
         "helmet": "^7.0.0",
         "node-cache": "^5.1.2",
-        "node-duckduckgo": "^2.0.18",
         "rivescript": "^2.2.1",
         "swagger-ui-express": "^4.6.2"
     },

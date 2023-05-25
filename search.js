@@ -1,16 +1,28 @@
-const dit = require("node-duckduckgo")
+const { default: axios } = require("axios")
 
-module.exports.getInfo = async function(request) {
-    const result = await dit.duckIt(request, { noHtml: true, parentalFilter: 'Moderate' })
-    console.log("Request processed")
+module.exports.getInfo = async function (request) {
+    return axios.get('https://api.duckduckgo.com/', {
+        params: {
+            q: request,
+            format: 'json',
+            kp: -2
+        }
+    }).then(response => {
+        const result = response.data;
 
-    if (result.data.AbstractText) {
-        return `I found on Duck Duck Go, that ${result.data.AbstractText}`
-    }
+        console.log("Request processed");
 
-    if (result.data.AbstractURL) {
-        return `I found something from Duck Duck Go on ${result.data.AbstractSource} ${result.data.Heading} ${result.data.AbstractURL}`
-    }
+        if (result.AbstractText) {
+            return `I found on DuckDuckGo that ${result.AbstractText}`;
+        }
 
-    return result.data.AbstractSource.trim()
+        if (result.AbstractURL) {
+            return `I found something from DuckDuckGo on ${result.AbstractSource} ${result.Heading} ${result.AbstractURL}`;
+        }
+
+        return "Sorry, I couldn't find any relevant information.";
+    }).catch(error => {
+        console.log(error)
+        return "sorry, I have a bit of a headache right now."
+    })
 }

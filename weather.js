@@ -23,7 +23,7 @@ exports.GetWeather = async function() {
     })
 
     const forecast = data.properties.periods[0].detailedForecast
-    const weather = `header:{${domain}-${email}}  I'm not sure where you live, but in Milwaukee, we are looking at ${forecast}`
+    const weather = `I'm not sure where you live, but in Milwaukee, we are looking at ${forecast}`
     console.log(weather)
 
     myCache.set(WEATHER_CACHE_KEY, weather, 3600)
