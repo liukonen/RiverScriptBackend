@@ -23,7 +23,10 @@
     },
     "homepage": "https://github.com/liukonen/RiverScriptBackend#readme",
     "dependencies": {
+        "@grpc/grpc-js": "^1.8.15",
+        "@grpc/proto-loader": "^0.7.7",
         "axios": "^1.3.4",
+        "compression": "^1.7.4",
         "express": "^4.18.2",
         "express-healthcheck": "^0.1.0",
         "helmet": "^7.0.0",

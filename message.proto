@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package bot;
+
+service BotService {
+  rpc HandleRequest (Request) returns (Response) {}
+}
+
+message Request {
+  string user = 1;
+  string text = 2;
+}
+
+message Response {
+  string response = 1;
+}
