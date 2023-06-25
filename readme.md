@@ -44,8 +44,10 @@ The RiverScript Backend can also be run using Docker. Docker Compose and a Docke
 ```bash
 docker build -t river-script-backend .
 ```
+
 3. Run the Docker container:
-   ```bash
+
+```bash
 docker run -p 5000:5000 river-script-backend 
 ```
 
