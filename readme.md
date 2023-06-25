@@ -52,7 +52,7 @@ docker run -p 5000:5000 river-script-backend
 ```
 
 ## License
-The project is licensed under the [MIT License](license)
+The project is licensed under the [MIT License](LICENSE)
 
 ## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
