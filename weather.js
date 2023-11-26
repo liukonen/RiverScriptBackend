@@ -8,24 +8,13 @@ const domain = process.env.DOMAIN
 const email = process.env.EMAIL_ADDRESS
 
 
-exports.GetWeather = async function() {
+exports.GetWeather = async () => {
     const cachedValue = myCache.get(WEATHER_CACHE_KEY)
-    if (cachedValue) {
-        console.log("Serving weather from cache")
-        return cachedValue
-    }
-
-    const { data } = await axios.get(WEATHER_API_URL, {
-        headers: {
-            "User-Agent": `(${domain}, ${email}`
-        },
-        responseType: "json"
-    })
-
+    if (cachedValue) return cachedValue
+    
+    const { data } = await axios.get(WEATHER_API_URL, { headers: { "User-Agent": `(${domain}, ${email}` }, responseType: "json" })
     const forecast = data.properties.periods[0].detailedForecast
     const weather = `I'm not sure where you live, but in Milwaukee, we are looking at ${forecast}`
-    console.log(weather)
-
     myCache.set(WEATHER_CACHE_KEY, weather, 3600)
     return weather
 }

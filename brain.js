@@ -10,11 +10,11 @@ bot.loadFile("rs-standard.rive")
         console.log(`Error when loading files: ${error}`)
     })
 
-exports.botreply = async function(user, input) {
+exports.botreply = async (user, input) => {
     return bot.reply(user, input)
 }
 
-exports.isInformationQuery = function(query) {
+exports.isInformationQuery = (query) => {
     return (
         query.includes("who's") ||
         query.includes("who is") ||
@@ -23,7 +23,7 @@ exports.isInformationQuery = function(query) {
     )
 }
 
-exports.extractQuery = function(query) {
+exports.extractQuery = (query) => {
     return query
         .replace(/who's/g, '')
         .replace(/who is/g, '')
