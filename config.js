@@ -5,7 +5,7 @@ module.exports = {
         customfavIcon: "https://liukonen.dev/img/favicons/favicon-32x32.png"
     },
     corsOptions: {
-        allowedOrigin: "https://liukonen.dev",
+        allowedOrigin: ["https://liukonen.dev", "https://bot.liukonen.dev"],
         allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept"
     },
     paths: {
