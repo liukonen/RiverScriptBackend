@@ -28,7 +28,7 @@ async function handleRequest(request, response) {
     const user = request.query.user || "local-user"
     const rawInput = request.query.text
     if (!rawInput) {
-        response.redirect(config.paths.swagger)
+        //response.redirect(config.paths.swagger)
         return
     }
     let query = rawInput.toLowerCase().trim()
