@@ -19,12 +19,16 @@ app.use(config.paths.swagger, swaggerUi.serve)
 app.use(config.paths.health, require('express-healthcheck')({ healthy: () => ({ everything: config.isOk }) }));
 app.use(config.paths.base, handleRequest)
 
+//Routes
+app.get(config.paths.swagger, swaggerUi.setup(swaggerDocument, config.swaggerUiOptions))
+app.get(config.paths.swaggerDoc, (req, res) => res.sendFile('openapi.json', { root: '.' }))
+
 //Route Handlers
 async function handleRequest(request, response) {
     const user = request.query.user || "local-user"
     const rawInput = request.query.text
     if (!rawInput) {
-        response.redirect("/api-docs")
+        response.redirect(config.paths.swagger)
         return
     }
     let query = rawInput.toLowerCase().trim()
@@ -42,9 +46,7 @@ async function handleRequest(request, response) {
     }
 }
 
-//Routes
-app.get(config.paths.swagger, swaggerUi.setup(swaggerDocument, config.swaggerUiOptions))
-app.get(config.paths.swaggerDoc, (req, res) => res.sendFile('openapi.json', { root: '.' }))
+
 
 //Server
 var server = app.listen(process.env.PORT || 5000, function () {
