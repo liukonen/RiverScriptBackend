@@ -1,4 +1,10 @@
-version: '3.3'
+version: "3.9"
+
+networks:
+  external-network:
+    name: external-network
+    driver: bridge
+
 services:
   web-alpine:
     build:
@@ -13,7 +19,5 @@ services:
     ports:
     - 5005:5000
     restart: unless-stopped
-networks:
-  existing-network:
-    external:
-      name: external
+    networks:
+      - external-network
