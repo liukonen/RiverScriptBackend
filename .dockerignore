@@ -1,0 +1,40 @@
+# Node.js dependencies
+node_modules/
+
+# Docker-related files (Dockerfile and docker-compose are for build context, so typically not needed)
+Dockerfile
+docker-compose.yml
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# VS Code settings (IDE config files)
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and debug files
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+*.log
+
+# Test, coverage, and build artifacts
+coverage/
+build/
+dist/
+
+# Miscellaneous (temp files, etc.)
+*.tgz
+*.zip
+*.tar.gz
+
+# Ignore other files that are not required for the build context
+*.md
+LICENSE
+readme.md
