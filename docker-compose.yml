@@ -1,12 +1,11 @@
 version: "3.9"
 
 networks:
-  external-network:
-    name: external-network
-    driver: bridge
+  interlink:
+    external: true
 
 services:
-  web-alpine:
+  chat:
     build:
       context: .
       dockerfile: dockerfile
@@ -20,4 +19,4 @@ services:
     - 5005:5000
     restart: unless-stopped
     networks:
-      - external-network
+      - interlink
