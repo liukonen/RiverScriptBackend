@@ -35,7 +35,7 @@
     "overrides": {
         "axios": "^1.7.7",
         "babel-core": "^6.26.3",
-        "babel-loader": "^9.1.2",
+        "babel-loader": "^10.0.0",
         "json5": "^2.2.3",
         "webpack": "^5.76.0",
         "serve-static": "^1.16.0"
