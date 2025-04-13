@@ -1,8 +1,8 @@
 FROM node:lts-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --production && npm cache clean --force
 COPY . ./
+RUN npm ci --omit=dev && npm cache clean --force
 
 FROM node:lts-alpine AS DEPLOYED
 WORKDIR /app
