@@ -1,10 +1,10 @@
-FROM node:lts-alpine AS build
+FROM node:22.14.0-alpine3.20 AS build
 WORKDIR /app
 COPY package*.json ./
 COPY . ./
 RUN npm ci --omit=dev && npm cache clean --force
 
-FROM node:lts-alpine AS DEPLOYED
+FROM node:22.14.0-alpine3.20 AS DEPLOYED
 WORKDIR /app
 LABEL maintainer="Luke Liukonen <liukonen@gmail.com>" \
       org.opencontainers.image.title="RiverScriptBackend" \
