@@ -6,11 +6,7 @@ networks:
 
 services:
   chat:
-    build:
-      context: .
-      dockerfile: dockerfile
-      labels:
-      - "com.centurylinklabs.watchtower.enable=false"
+    image: ghcr.io/liukonen/riverscriptbackend:Main
     command: npm start
     environment:
       - EMAIL_ADDRESS=${EMAIL_ADDRESS}
