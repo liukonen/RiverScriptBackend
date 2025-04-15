@@ -14,4 +14,4 @@ LABEL maintainer="Luke Liukonen <liukonen@gmail.com>" \
 COPY --from=build /app /app
 USER 1000
 EXPOSE 5000
-CMD ["node", "index.js"]
+CMD ["node", "index.mjs"]
