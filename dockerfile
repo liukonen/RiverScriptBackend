@@ -12,6 +12,6 @@ LABEL maintainer="Luke Liukonen <liukonen@gmail.com>" \
       org.opencontainers.image.version="1.0.0" \
       org.opencontainers.image.licenses="MIT"
 COPY --from=build /app /app
-USER 1000
+USER 1000:1000
 EXPOSE 5000
 CMD ["node", "index.mjs"]
