@@ -1,61 +1,47 @@
+
 # RiverScript Backend
 
-RiverScript Backend is a Node.js API ChatBot application that originated back in 2006 as an AIML chat client. Over the years, it has evolved from VB6 and VB.Net to C#, client-side JavaScript, and finally, Node.js.
+**Intent Processing & Deterministic Service Reference**
 
-## Prerequisites
+A service-oriented core for conversational logic. Originally built as an AIML client, this backend functions as a reference for augmenting generative AI with factual, API-driven data (Weather, Search, i18n).
 
-To run the RiverScript Backend, ensure that you have the following installed on your system:
+### Technical Stack
 
-- Node.js 
-- npm 
+-   **Runtime:** Node.js (TypeScript)
+    
+-   **Integrations:** DuckDuckGo AI, OpenWeather API, Swagger (OpenAPI)
+    
+-   **Infrastructure:** Docker, Docker Compose
+    
+-   **Patterns:** Adapter Pattern, Sequential processing, Service Decoupling
+    
 
-## Getting Started
+### The Mission: A 20-Year Evolution
 
-Follow these steps to get the RiverScript Backend up and running:
+This project is a record of architectural survivability. It originated in 2006 as a VB6 AIML client and has been systematically re-engineered through **VB.Net, C#, client-side JavaScript, and finally Node.js.** It was a centerpiece of the **"Be the Spark"** tour, demonstrating conversational tech long before the LLM era. Today, it serves as a "Truth Layer"—handling the factual grounding (Weather/Entity retrieval) that generative models often fail to execute with deterministic reliability.
 
-1. Clone the repository:
+### Architecture & Decisions
 
-```bash
-   git clone https://github.com/your-username/river-script-backend.git
-```
-2. Install the dependencies:
-```bash
-cd river-script-backend
-npm install
-```
-3. Start the server:
-```bash
-npm start
-```
+-   **Programmable Logic:** Migrated from legacy AIML to **RiveScript** to allow for more complex, stateful branching logic that standard generative tokens cannot guarantee.
+    
+-   **Observation & Documentation:** Integrated **Swagger** to ensure the API contract remains visible and testable, upholding the "Invisible Tech" philosophy of observability.
+    
+-   **Language Chain:** Retains the sequential i18n pipeline (_Detect $\rightarrow$ English $\rightarrow$ Process $\rightarrow$ Translate_) to ensure business logic remains canonical regardless of the host language.
+    
 
-The server will start running on http://localhost:5000.
+### Impact & ROI
 
-## API Documentation
-The API documentation is generated using Swagger and can be accessed at http://localhost:5000/api-docs. The documentation provides details about the available endpoints, request/response structures, and authentication requirements.
+-   **Lifecycle Management:** Proof of ability to migrate mission-critical logic across four distinct language paradigms without loss of intent.
+    
+-   **Hallucination Mitigation:** Uses verified API adapters to ground conversational UI in real-time facts.
+    
+-   **Operational Readiness:** Standardized via Docker and Swagger for immediate deployment and developer handoff.
+    
 
-## Configuration
-The application can be configured using the following environment variables:
-PORT: The port number on which the server will listen. (Default: 5000)
+### The Golden Path
 
-## Docker Support
-The RiverScript Backend can also be run using Docker. Docker Compose and a Dockerfile are provided in the repository to simplify the setup process. Follow these steps to run the application using Docker:
-1. Install Docker on your system.
-2. Build the Docker image:
-```bash
-docker build -t river-script-backend .
-```
-
-3. Run the Docker container:
-
-```bash
-docker run -p 5000:5000 river-script-backend 
-```
-
-## License
-The project is licensed under the [MIT License](LICENSE)
-
-## Contributing
-Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
-
-## Contact
-For any inquiries or questions, feel free to contact me here on GitHub.
+1.  `npm install`
+    
+2.  `npm start`
+    
+3.  **Docs:** View the API contract at `http://localhost:5000/api-docs`
