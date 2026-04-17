@@ -1,10 +1,10 @@
-FROM node:24.15.0-alpine3.22@sha256:71b5802142515f69d9f5eb2ac283fb73118f1cbe0bbe4941bb34bd924940038f AS build
+FROM node:24.15.0-alpine3.22@sha256:b689d4005875ae167178471a7a622ec2909459a3bbb32277260be1971af7a99f AS build
 WORKDIR /app
 COPY package*.json ./
 COPY . ./
 RUN npm ci --omit=dev && npm cache clean --force
 
-FROM node:24.15.0-alpine3.22@sha256:71b5802142515f69d9f5eb2ac283fb73118f1cbe0bbe4941bb34bd924940038f AS DEPLOYED
+FROM node:24.15.0-alpine3.22@sha256:b689d4005875ae167178471a7a622ec2909459a3bbb32277260be1971af7a99f AS DEPLOYED
 WORKDIR /app
 LABEL maintainer="Luke Liukonen <liukonen@gmail.com>" \
       org.opencontainers.image.title="RiverScriptBackend" \
