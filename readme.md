@@ -1,47 +1,37 @@
-
 # RiverScript Backend
 
-**Intent Processing & Deterministic Service Reference**
+Tags: `Node.js` `TypeScript` `Adapter Pattern` `Sequential Processing` `Service Decoupling`
 
-A service-oriented core for conversational logic. Originally built as an AIML client, this backend functions as a reference for augmenting generative AI with factual, API-driven data (Weather, Search, i18n).
+A robust, highly-evolved service-oriented backend for conversational logic, originally built as an AIML client and re-engineered through multiple language paradigms. This project serves as a "Truth Layer" in generative AI applications, ensuring deterministic reliability with factual grounding.
 
-### Technical Stack
+## Context & Story
 
--   **Runtime:** Node.js (TypeScript)
-    
--   **Integrations:** DuckDuckGo AI, OpenWeather API, Swagger (OpenAPI)
-    
--   **Infrastructure:** Docker, Docker Compose
-    
--   **Patterns:** Adapter Pattern, Sequential processing, Service Decoupling
-    
+RiverScript Backend has a 20-year journey, evolving from VB6 to modern Node.js while retaining its core purpose of providing factual data and augmenting conversational AI. It started as a proof-of-concept, evolved for a platform for "Be the Spark tour" in Milwaukee showcasing conversational tech well before the LLM era. Over time, it has been re-engineered multiple times to ensure longevity and reliability.
 
-### The Mission: A 20-Year Evolution
+## Architecture & Decisions
 
-This project is a record of architectural survivability. It originated in 2006 as a VB6 AIML client and has been systematically re-engineered through **VB.Net, C#, client-side JavaScript, and finally Node.js.** It was a centerpiece of the **"Be the Spark"** tour, demonstrating conversational tech long before the LLM era. Today, it serves as a "Truth Layer"—handling the factual grounding (Weather/Entity retrieval) that generative models often fail to execute with deterministic reliability.
+- **Programmable Logic**: Migrated from legacy AIML to RiveScript for more complex stateful branching logic.
+- **Observation & Documentation**: Integrated Swagger to maintain a visible and testable API contract, upholding the "Invisible Tech" philosophy of observability.
+- **Language Chain**: Retained the sequential i18n pipeline (_Detect $\rightarrow$ English $\rightarrow$ Process $\rightarrow$ Translate_) for consistent business logic regardless of host language.
 
-### Architecture & Decisions
+## Key Features
 
--   **Programmable Logic:** Migrated from legacy AIML to **RiveScript** to allow for more complex, stateful branching logic that standard generative tokens cannot guarantee.
-    
--   **Observation & Documentation:** Integrated **Swagger** to ensure the API contract remains visible and testable, upholding the "Invisible Tech" philosophy of observability.
-    
--   **Language Chain:** Retains the sequential i18n pipeline (_Detect $\rightarrow$ English $\rightarrow$ Process $\rightarrow$ Translate_) to ensure business logic remains canonical regardless of the host language.
-    
+- **RiveScript Support**: Enables complex, stateful branching logic.
+- **API Documentation**: Available via Swagger at `http://localhost:5000/api-docs`.
+- **Sequential i18n Pipeline**: Ensures consistent business logic across languages.
+- **Dockerized Deployment**: Simplifies setup and deployment with Docker.
 
-### Impact & ROI
+## Quick Start
 
--   **Lifecycle Management:** Proof of ability to migrate mission-critical logic across four distinct language paradigms without loss of intent.
-    
--   **Hallucination Mitigation:** Uses verified API adapters to ground conversational UI in real-time facts.
-    
--   **Operational Readiness:** Standardized via Docker and Swagger for immediate deployment and developer handoff.
-    
+### Installation
+```bash
+npm install
+```
 
-### The Golden Path
+### Running the Service
+```bash
+npm start
+```
 
-1.  `npm install`
-    
-2.  `npm start`
-    
-3.  **Docs:** View the API contract at `http://localhost:5000/api-docs`
+### Accessing API Docs
+Open your browser and navigate to `http://localhost:5000/api-docs` to view and test the API contract.
