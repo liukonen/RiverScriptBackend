@@ -14,4 +14,4 @@ LABEL maintainer="Luke Liukonen <liukonen@gmail.com>" \
 COPY --from=build /app /app
 
 EXPOSE 5000
-CMD ["index.mjs"]
+ENTRYPOINT ["/nodejs/bin/node", "index.mjs"]
